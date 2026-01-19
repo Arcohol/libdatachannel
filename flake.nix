@@ -24,6 +24,11 @@
             gcc
             pkg-config
             openssl
+            (python3.withPackages (
+              ps: with ps; [
+                websockets
+              ]
+            ))
           ];
         };
       }
