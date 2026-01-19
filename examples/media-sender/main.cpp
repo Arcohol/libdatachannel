@@ -35,7 +35,11 @@ const int BUFFER_SIZE = 2048;
 int main() {
 	try {
 		rtc::InitLogger(rtc::LogLevel::Debug);
-		auto pc = std::make_shared<rtc::PeerConnection>();
+
+		rtc::Configuration config;
+		config.iceServers.emplace_back("stun:stun.l.google.com:19302");
+
+		auto pc = std::make_shared<rtc::PeerConnection>(config);
 
 		pc->onStateChange(
 		    [](rtc::PeerConnection::State state) { std::cout << "State: " << state << std::endl; });
